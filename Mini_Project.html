@@ -1,3 +1,4 @@
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Question 1
 <!DOCTYPE html>
 <html>
@@ -44,4 +45,106 @@
         }
     </script>
 </body>
+</html>
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+//Question 2 - StopWatch
+<html>
+    <head>
+        <title>Stopwatch</title>
+        <script>
+            var ss,i;
+            ss = 0;
+            function startS()
+            {
+                ss = ss + 1;
+                if(ss==1)
+                {
+                    start();
+                    document.getElementById("start").innerHTML = "Stop"
+                }
+                else if(ss==2)
+                {
+                    stop();
+                    document.getElementById("start").innerHTML = "Start"
+                    ss = 0;
+                }
+            }
+            var x, millisec, sec, min, hr, millisecOut, secOut, minOut, hrOut;
+            millisec = 0;
+            sec = 0;
+            min = 0;
+            hr = 0;
+            function start()
+            {
+                x = setInterval(timer,10);
+            }
+            function stop()
+            {
+                clearInterval(x);
+            }
+            function timer()
+            {
+                millisecOut = checkTime(millisec);
+                secOut = checkTime(sec);
+                minOut = checkTime(min);
+                hrOut = checkTime(hr);
+                
+                millisec = ++millisec;
+                if(millisec==100)
+                 {
+                    millisec = 0;
+                    sec = ++sec;
+                 }
+                if(sec == 60)
+                {
+                    sec = 0;
+                    min = ++min;
+                }
+                if(min==60)
+                {
+                    min = 0;
+                    hr = ++hr;
+                }
+                document.getElementById("hr").innerHTML = hrOut;
+                document.getElementById("min").innerHTML = minOut;
+                document.getElementById("sec").innerHTML = secOut;
+                document.getElementById("msec").innerHTML = millisecOut;
+            }
+            function checkTime(i)
+            {
+                if(i < 10)
+                {
+                    i = "0" + i;
+                }
+                return i;
+            }
+            function res()
+            {
+                millisec = 0;
+                sec = 0;
+                min = 0;
+                hr = 0;
+                
+                document.getElementById("hr").innerHTML = "00";
+                document.getElementById("min").innerHTML = "00";
+                document.getElementById("sec").innerHTML = "00";
+                document.getElementById("msec").innerHTML = "00";
+            }
+        </script>
+    </head>
+    <body bgcolor="grey"><center>
+        <h1 style = "color: coral">StopWatch</h1>
+        <h2 style="color:blue ">
+            <span id="hr">00</span><sub>hr</sub>:
+            <span id="min">00</span><sub>min</sub>:
+            <span id="sec">00</span><sub>sec</sub>:
+            <span id="msec">00</span><sub>ms</sub><br>
+            <button id="start" onclick = "startS()">Start</button>
+            <button onclick = "res()" >Reset</button>
+        </h2>
+        </center>
+    </body>
 </html>
